@@ -10,13 +10,13 @@
     <div id="navbar"></div>
 
     <script>
-      fetch('./components/navbar.html')
+      fetch('/my-favorites/components/navbar.html')
         .then(res => res.text())
         .then(data => {
           document.getElementById('navbar').innerHTML = data;
         });
     </script>
-    
+
     <h1>おすすめの音楽</h1>    
     <p>このページでは、私が特におすすめしたい音楽をまとめています。</p>
   </header>
