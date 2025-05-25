@@ -6,17 +6,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- HTML内の <body> 開始直後などに配置 -->
+
+
   <header>
-    <nav>
-      <ul class="navbar">
-        <li><a href="/my-favorites/index.html">ホーム</a></li>
-        <li><a href="/my-favorites/pages/manga-anime/index.html">マンガ・アニメ</a></li>
-        <li><a href="/my-favorites/pages/movies/index.html">映画</a></li>
-        <li><a href="/my-favorites/pages/books/index.html">本</a></li>
-        <li><a href="/my-favorites/pages/music/index.html">音楽</a></li>
-        <li><a href="/my-favorites/pages/radio/index.html">ラジオ</a></li>
-      </ul>
-    </nav>
+    <div id="navbar"></div>
+
+<script>
+  fetch('./components/navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('navbar').innerHTML = data;
+    });
+</script>
     
     <h1>わたしのおすすめ図鑑</h1>
     <p>私が「これはいい！」「みんなにおすすめしたい！！」と思ったものをゆるくまとめていきます。</p>
