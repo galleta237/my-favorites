@@ -8,13 +8,16 @@
 </head>
 <body>
   <header>
+    <div id="navbar"></div>
+
+    <script>
+      fetch('./components/navbar.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('navbar').innerHTML = data;
+        });
+    </script>
     <h1>📻 おすすめラジオ</h1>
-    <nav>
-      <ul class="navbar">
-        <li><a href="/my-favorites/index.html">ホーム</a></li>
-        <li><a href="/my-favorites/pages/radio/index.html">📻 ラジオジャンルトップ</a></li>
-      </ul>
-    </nav>
   </header>
 
   <main>
