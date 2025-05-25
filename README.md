@@ -16,3 +16,9 @@
 ラジオ
 ・中島ヨ式²
 ・MASH RADIO
+
+
+## 詳細ページの作り方
+- cp templates/anime-templates.html pages/anime/worldtrigger.html のようにページをコピー
+- テンプレートの各部分を変更
+- トップページとジャンルまとめページに詳細ページへのリンクを追加
