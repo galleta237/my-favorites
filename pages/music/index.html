@@ -34,7 +34,7 @@
         data.forEach(item => {
           const li = document.createElement('li');
           li.innerHTML = `
-            <strong><a href="/my-favorites/music/details.html?item=${item.filename}">${item.title}</a></strong>
+            <strong><a href="/my-favorites/pages/music/details.html?item=${item.filename}">${item.title}</a></strong>
             （${item.artist}／${item.year}年）
           `;
           list.appendChild(li);
