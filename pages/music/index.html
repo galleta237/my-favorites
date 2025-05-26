@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>おすすめの音楽</title>
-  <link rel="stylesheet" href="../../style.css">
+  <meta charset="UTF-8" />
+  <title>おすすめ音楽一覧</title>
+  <link rel="stylesheet" href="../../style.css" />
 </head>
 <body>
   <header>
     <div id="navbar"></div>
-
     <script>
       fetch('/my-favorites/components/navbar.html')
         .then(res => res.text())
@@ -16,23 +15,32 @@
           document.getElementById('navbar').innerHTML = data;
         });
     </script>
-
-    <h1>おすすめの音楽</h1>    
-    <p>このページでは、私が特におすすめしたい音楽をまとめています。</p>
+    <h1>🎧 おすすめの音楽一覧</h1>
   </header>
 
   <main>
-    <section>
-      <h2>おすすめ一覧</h2>
-      <ul>
-        <li><a href="watashirashiku.html"><strong>私らしく/桑島法子</strong></a> - "心を燃やしたことを誇れるように"なりたいと思わせてくれる一曲</li>
-        <!-- 他の作品を追加したくなったらここに li を足せばOK -->
-      </ul>
-    </section>
+    <ul id="music-list"></ul>
   </main>
 
   <footer>
     <p>© 2025 わたしのおすすめ図鑑</p>
   </footer>
+
+  <script>
+    fetch('/my-favorites/data/music.json')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('music-list');
+        data.forEach(item => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <strong><a href="/my-favorites/music/details.html?item=${item.filename}">${item.title}</a></strong>
+            （${item.artist}／${item.year}年）
+          `;
+          list.appendChild(li);
+        });
+      });
+  </script>
 </body>
 </html>
+
