@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>音楽紹介</title>
+  <link rel="stylesheet" href="/my-favorites/style.css">
+</head>
+<body>
+  <header>
+    <div id="navbar"></div>
+    <script>
+      fetch('/my-favorites/components/navbar.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('navbar').innerHTML = data;
+        });
+    </script>
+    <h1>🎧 おすすめの音楽</h1>
+  </header>
+
+  <main>
+    <div id="music-detail">読み込み中...</div>
+    <a href="/my-favorites/index.html" class="btn">トップページに戻る</a>
+  </main>
+
+  <footer>
+    <p>© 2025 わたしのおすすめ図鑑</p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const musicId = params.get("id");
+
+    fetch("/my-favorites/data/music.json")
+      .then(res => res.json())
+      .then(data => {
+        const item = data.find(m => m.id === musicId);
+        if (!item) {
+          document.getElementById("music-detail").innerHTML = "<p>データが見つかりませんでした。</p>";
+          return;
+        }
+
+        // ページタイトルを変更
+        document.title = `音楽紹介：${item.title}`;
+
+        // 内容を描画
+        document.getElementById("music-detail").innerHTML = `
+          <section>
+            <h2>🎵 ${item.title} / ${item.artist}</h2>
+            <ul>
+              <li><strong>アーティスト：</strong> ${item.artist}</li>
+              <li><strong>リリース年：</strong> ${item.year}</li>
+              <li><strong>ジャンル：</strong> ${item.genre}</li>
+              <li><strong>好きなフレーズ：</strong> ${item.phrase}</li>
+            </ul>
+
+            <h2>👍 おすすめポイント</h2>
+            <ul>${item.points.map(point => `<li>${point}</li>`).join('')}</ul>
+
+            <h3>📖 コメント</h3>
+            <p>${item.comment}</p>
+          </section>
+        `;
+      });
+  </script>
+</body>
+</html>
